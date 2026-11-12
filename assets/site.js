@@ -4,9 +4,9 @@
 
 const SITE = {
   // 账号服务器，与 App 的 lib/core/endpoints.dart 一致
-  api: 'https://seawalker.jiafic.cn',
+  api: 'https://marivo.jiafic.cn',
   // APK 放在这个公开仓库的 Releases 里（官网本身也由它的 GitHub Pages 提供）
-  releasesRepo: 'jiafic-zh/seawalker-app-releases',
+  releasesRepo: 'marivo-tech/releases',
   langs: ['en', 'zh', 'ru', 'ja', 'pt', 'es'],
   langNames: { en: 'English', zh: '中文', ru: 'Русский', ja: '日本語', pt: 'Português', es: 'Español' },
 };
