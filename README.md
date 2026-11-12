@@ -2,8 +2,8 @@
 
 Official Android installer (APK) for the **Marivo** app, which controls your devices over Bluetooth.
 
-- **Website:** https://marivo-tech.github.io/releases/ — download, release notes, privacy policy
-- **Latest version:** [Releases](https://github.com/marivo-tech/releases/releases/latest) — open *Assets* and download the `.apk` file
+- **Website:** https://marivo-tech.github.io/marivo-app-releases/ — download, release notes, privacy policy
+- **Latest version:** [Releases](https://github.com/marivo-tech/marivo-app-releases/releases/latest) — open *Assets* and download the `.apk` file
 - Requires Android 8.0 or newer. Once installed, the app checks for updates by itself (Settings › App updates).
 - Need help? Please contact your supplier.
 
@@ -11,4 +11,4 @@ This repository hosts the website (GitHub Pages) and the release files. It is ge
 
 ---
 
-**中文**：Marivo App 官方 Android 安装包。访问 [官网](https://marivo-tech.github.io/releases/?lang=zh) 下载，或在 [最新版本](https://github.com/marivo-tech/releases/releases/latest) 的 *Assets* 中下载 `.apk` 文件。需要 Android 8.0 及以上；安装后可在 App 内「设置 › App 更新」直接升级。如需帮助，请联系你的供应商。
+**中文**：Marivo App 官方 Android 安装包。访问 [官网](https://marivo-tech.github.io/marivo-app-releases/?lang=zh) 下载，或在 [最新版本](https://github.com/marivo-tech/marivo-app-releases/releases/latest) 的 *Assets* 中下载 `.apk` 文件。需要 Android 8.0 及以上；安装后可在 App 内「设置 › App 更新」直接升级。如需帮助，请联系你的供应商。
