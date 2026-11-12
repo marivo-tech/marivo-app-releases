@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-key="navChangelog">Marivo</title>
+<link rel="icon" href="../assets/icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/icon.png" alt="">MARIVO</a>
+  <nav>
+    <a href="../" data-i18n="navDownload"></a>
+    <a href="./" aria-current="page" data-i18n="navChangelog"></a>
+    <a href="../privacy/" data-i18n="privacyPolicy"></a>
+  </nav>
+  <select id="lang" aria-label="Language"></select>
+</div></header>
+
+<main class="wrap">
+  <h1 data-i18n="navChangelog"></h1>
+  <div id="list"></div>
+</main>
+
+<footer><div class="wrap">
+  <p data-i18n="supportNote"></p>
+  <p><a href="../delete-account/" data-i18n="deleteAccount"></a></p>
+</div></footer>
+
+<script src="../assets/site.js"></script>
+<script>
+initPage(async ({ t, lang }) => {
+  const list = document.getElementById('list');
+  let data;
+  try {
+    data = await loadJson('releases.json');
+  } catch (e) {
+    list.append(el('p', { class: 'msg err' }, t('loadFailed')));
+    return;
+  }
+  for (const r of data.releases) {
+    const notes = (r.notes && (r.notes[lang] || r.notes.en)) || '';
+    const lines = notes.split('\n').map((s) => s.replace(/^\s*[•\-*]\s*/, '').trim()).filter(Boolean);
+    list.append(el('section', { class: 'card release' },
+      el('h2', {}, `v${r.version} `, r.channel === 'test' ? el('span', { class: 'tag' }, t('testBuild')) : null),
+      el('p', { class: 'muted small' }, r.date),
+      el('ul', {}, lines.map((s) => el('li', {}, s)))));
+  }
+});
+</script>
+</body>
+</html>

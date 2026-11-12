@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "stores": {
+    "google_play": {
+      "url": "https://play.google.com/store/apps/details?id=com.seawalkerboat.seawalker",
+      "live": false
+    },
+    "app_store": {
+      "url": null,
+      "live": false
+    }
+  },
+  "ios": null,
+  "releases": [
+    {
+      "version": "0.1.2",
+      "build": 3,
+      "date": "2026-11-10",
+      "channel": "stable",
+      "apk": {
+        "name": "seawalker-0.1.2.apk",
+        "size": 60413359,
+        "sha256": "9ec8f42f9cd8f986a4479250b32fd8ac38aeeeccc70f6921ac4794a21bcc679b"
+      },
+      "notes": {
+        "en": "• More reliable in-app updates: installer files are now verified (signature and version) before installing\n• Fixed an issue where some phones could reuse an old installer file",
+        "zh": "• App 内更新更可靠：安装前会核对安装包的签名和版本\n• 修复部分手机会误用旧安装包导致「签名冲突」的问题",
+        "ru": "• Более надёжное обновление в приложении: перед установкой проверяются подпись и версия\n• Исправлена ошибка, из-за которой некоторые телефоны использовали старый установщик",
+        "ja": "• アプリ内アップデートの信頼性を向上：インストール前に署名とバージョンを確認\n• 一部の端末で古いインストーラーが使われる問題を修正",
+        "pt": "• Atualização no app mais confiável: assinatura e versão são verificadas antes de instalar\n• Corrigido problema em que alguns celulares reutilizavam um instalador antigo",
+        "es": "• Actualización en la app más fiable: se verifican la firma y la versión antes de instalar\n• Corregido un problema por el que algunos teléfonos reutilizaban un instalador antiguo"
+      }
+    }
+  ]
+}

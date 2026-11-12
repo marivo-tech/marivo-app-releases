@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-root=".">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-key="navDownload">Marivo</title>
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="./"><img src="assets/icon.png" alt="">MARIVO</a>
+  <nav>
+    <a href="./" aria-current="page" data-i18n="navDownload"></a>
+    <a href="changelog/" data-i18n="navChangelog"></a>
+    <a href="privacy/" data-i18n="privacyPolicy"></a>
+  </nav>
+  <select id="lang" aria-label="Language"></select>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <img src="assets/icon.png" alt="">
+    <div>
+      <h1>Marivo</h1>
+      <p class="muted" data-i18n="tagline"></p>
+    </div>
+  </div>
+
+  <div class="card" id="android" hidden>
+    <a class="btn" id="apk" href="#" data-i18n="downloadApk"></a>
+    <p class="muted small" id="apkInfo"></p>
+    <p class="small" data-i18n="apkHint"></p>
+    <p class="hash" id="apkHash"></p>
+  </div>
+  <p class="msg err" id="error" hidden></p>
+  <div class="stores" id="stores"></div>
+</main>
+
+<footer><div class="wrap">
+  <p data-i18n="supportNote"></p>
+  <p><a href="delete-account/" data-i18n="deleteAccount"></a></p>
+</div></footer>
+
+<script src="assets/site.js"></script>
+<script>
+initPage(async ({ t }) => {
+  let data;
+  try {
+    data = await loadJson('releases.json');
+  } catch (e) {
+    const err = document.getElementById('error');
+    err.textContent = t('loadFailed');
+    err.hidden = false;
+    return;
+  }
+
+  // 下载页只放正式版；测试版只出现在更新日志里（App 内更新也能拿到）
+  const r = data.releases.find((x) => x.channel !== 'test');
+  if (r && r.apk) {
+    document.getElementById('apk').href =
+      `https://github.com/${SITE.releasesRepo}/releases/download/v${r.version}/${r.apk.name}`;
+    document.getElementById('apkInfo').textContent =
+      t('versionInfo', { version: r.version, size: (r.apk.size / 1048576).toFixed(1), date: r.date });
+    document.getElementById('apkHash').textContent = `SHA-256: ${r.apk.sha256}`;
+    document.getElementById('android').hidden = false;
+  }
+
+  const stores = document.getElementById('stores');
+  for (const [key, label] of [['google_play', 'googlePlay'], ['app_store', 'appStore']]) {
+    const s = (data.stores || {})[key] || {};
+    stores.append(s.live && s.url
+      ? el('a', { class: 'btn secondary', href: s.url }, t(label))
+      : el('span', { class: 'btn secondary', 'aria-disabled': 'true' }, `${t(label)} · ${t('comingSoon')}`));
+  }
+});
+</script>
+</body>
+</html>

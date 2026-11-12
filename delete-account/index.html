@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title data-key="deleteAccount">Marivo</title>
+<link rel="icon" href="../assets/icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/icon.png" alt="">MARIVO</a>
+  <nav>
+    <a href="../" data-i18n="navDownload"></a>
+    <a href="../changelog/" data-i18n="navChangelog"></a>
+    <a href="../privacy/" data-i18n="privacyPolicy"></a>
+  </nav>
+  <select id="lang" aria-label="Language"></select>
+</div></header>
+
+<!-- 网页版账号删除（Google Play 要求）：与 App 内注销流程相同，邮箱验证码确认后删除 -->
+<main class="wrap">
+  <h1 data-i18n="deleteAccount"></h1>
+  <div class="card" id="box"></div>
+</main>
+
+<footer><div class="wrap"><p data-i18n="supportNote"></p></div></footer>
+
+<script src="../assets/site.js"></script>
+<script>
+const CODE_LENGTH = 6;
+const RESEND_SECONDS = 60;
+
+/** 调账号接口；出错时抛出带文案键的 Error（message 为 i18n 键）。 */
+async function api(method, path, body, token) {
+  let res;
+  try {
+    const headers = { Accept: 'application/json' };
+    if (body) headers['Content-Type'] = 'application/json';
+    if (token) headers.Authorization = token;
+    res = await fetch(`${SITE.api}/api/collections/users/${path}`, {
+      method, headers, body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch (_) {
+    throw new Error('authErrNetwork');
+  }
+  const text = await res.text();
+  const json = text ? JSON.parse(text) : {};
+  if (res.ok) return json;
+  if (res.status === 429) throw new Error('authErrTooMany');
+  if (res.status === 400 && json.data && json.data.email) throw new Error('authErrInvalidEmail');
+  const e = new Error('http');
+  e.status = res.status;
+  e.detail = json.message || '';
+  throw e;
+}
+
+initPage(({ t, lang }) => {
+  const box = document.getElementById('box');
+  let email = '', otpId = null, wait = 0, timer = null, busy = false;
+
+  const errorText = (e) => (e.message === 'http' ? t('errUnknown', { detail: `HTTP ${e.status} ${e.detail}` }) : t(e.message));
+
+  function showError(msgEl, e) {
+    msgEl.textContent = errorText(e);
+    msgEl.hidden = false;
+  }
+
+  function stepEmail() {
+    const input = el('input', { type: 'email', autocomplete: 'email', placeholder: t('email'), value: email });
+    const msg = el('p', { class: 'msg err', hidden: true });
+    const btn = el('button', { class: 'btn' }, t('sendCode'));
+    async function send() {
+      if (busy) return;
+      email = input.value.trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showError(msg, new Error('authErrInvalidEmail'));
+      busy = btn.disabled = true;
+      try {
+        otpId = (await api('POST', 'request-otp', { email, lang })).otpId;
+        stepCode();
+      } catch (e) {
+        showError(msg, e);
+      } finally {
+        busy = btn.disabled = false;
+      }
+    }
+    btn.onclick = send;
+    input.onkeydown = (ev) => { if (ev.key === 'Enter') send(); };
+    box.replaceChildren(el('p', {}, t('deleteIntro')), input, msg, btn);
+    input.focus();
+  }
+
+  function stepCode() {
+    const input = el('input', {
+      type: 'text', class: 'code', inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: CODE_LENGTH,
+      placeholder: t('verificationCode'),
+    });
+    const msg = el('p', { class: 'msg err', hidden: true });
+    const del = el('button', { class: 'btn danger' }, t('deleteAccount'));
+    const resend = el('button', { class: 'link' });
+    const change = el('button', { class: 'link', onclick: stepEmail }, t('changeEmail'));
+
+    function tick() {
+      resend.textContent = wait > 0 ? t('resendIn', { seconds: wait }) : t('resend');
+      resend.disabled = wait > 0;
+    }
+    clearInterval(timer);
+    wait = RESEND_SECONDS;
+    tick();
+    timer = setInterval(() => { wait -= 1; tick(); if (wait <= 0) clearInterval(timer); }, 1000);
+
+    resend.onclick = async () => {
+      if (busy || wait > 0) return;
+      busy = true;
+      msg.hidden = true;
+      try {
+        otpId = (await api('POST', 'request-otp', { email, lang })).otpId;
+        stepCode();
+      } catch (e) {
+        showError(msg, e);
+      } finally {
+        busy = false;
+      }
+    };
+
+    // 注销不自动提交：必须点按钮确认
+    del.onclick = async () => {
+      if (busy) return;
+      const code = input.value.replace(/\D/g, '');
+      if (code.length !== CODE_LENGTH) return showError(msg, new Error('authErrInvalidCode'));
+      busy = del.disabled = true;
+      msg.hidden = true;
+      try {
+        let auth;
+        try {
+          auth = await api('POST', 'auth-with-otp', { otpId, password: code });
+        } catch (e) {
+          if (e.status === 400) throw new Error('authErrInvalidCode');
+          throw e;
+        }
+        await api('DELETE', `records/${auth.record.id}`, null, auth.token);
+        clearInterval(timer);
+        box.replaceChildren(el('p', { class: 'msg ok' }, t('accountDeleted')));
+      } catch (e) {
+        showError(msg, e);
+      } finally {
+        busy = del.disabled = false;
+      }
+    };
+
+    box.replaceChildren(
+      el('p', {}, t('deleteAccountCodeIntro', { email })),
+      input,
+      el('p', { class: 'muted small' }, t('codeCheckSpam')),
+      msg,
+      del,
+      el('div', { class: 'row', style: 'margin-top:12px' }, resend, change),
+    );
+    input.focus();
+  }
+
+  stepEmail();
+});
+</script>
+</body>
+</html>

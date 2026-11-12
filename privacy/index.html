@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-key="privacyPolicy">Marivo</title>
+<link rel="icon" href="../assets/icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/icon.png" alt="">MARIVO</a>
+  <nav>
+    <a href="../" data-i18n="navDownload"></a>
+    <a href="../changelog/" data-i18n="navChangelog"></a>
+    <a href="./" aria-current="page" data-i18n="privacyPolicy"></a>
+  </nav>
+  <select id="lang" aria-label="Language"></select>
+</div></header>
+
+<!-- 正文与 App 内的隐私政策是同一份文案（构建时从 ARB 导出），不要在这里单独改 -->
+<main class="wrap doc">
+  <h1 data-i18n="privacyPolicy"></h1>
+  <p class="muted small" data-i18n="ppUpdated"></p>
+  <p data-i18n="ppIntro"></p>
+  <div id="sections"></div>
+</main>
+
+<footer><div class="wrap">
+  <p data-i18n="supportNote"></p>
+  <p><a href="../delete-account/" data-i18n="deleteAccount"></a></p>
+</div></footer>
+
+<script src="../assets/site.js"></script>
+<script>
+// 章节顺序与 App 的 PrivacyPolicyPage 一致（lib/features/settings/ui/info_pages.dart）
+const SECTIONS = ['ppCollect', 'ppLocal', 'ppUse', 'ppShare', 'ppDelete', 'ppRights', 'ppChildren', 'ppChanges'];
+initPage(({ t }) => {
+  const box = document.getElementById('sections');
+  for (const k of SECTIONS) box.append(el('h2', {}, t(`${k}Title`)), el('p', {}, t(k)));
+});
+</script>
+</body>
+</html>
