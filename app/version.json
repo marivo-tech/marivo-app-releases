@@ -3,7 +3,7 @@
     "version": "0.1.2",
     "build": 3,
     "play_url": "https://play.google.com/store/apps/details?id=com.marivo.app",
-    "apk_url": "https://github.com/marivo-tech/releases/releases/download/v0.1.2/seawalker-0.1.2.apk",
+    "apk_url": "https://github.com/marivo-tech/marivo-app-releases/releases/download/v0.1.2/seawalker-0.1.2.apk",
     "apk_sha256": "9ec8f42f9cd8f986a4479250b32fd8ac38aeeeccc70f6921ac4794a21bcc679b"
   },
   "notes": {
