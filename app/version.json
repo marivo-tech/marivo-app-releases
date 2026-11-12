@@ -4,7 +4,7 @@
     "build": 1,
     "play_url": "https://play.google.com/store/apps/details?id=com.marivo.app",
     "apk_url": "https://github.com/marivo-tech/marivo-app-releases/releases/download/v0.0.1/marivo-0.0.1.apk",
-    "apk_sha256": "95a0df36a0f5e12788477a76ec7dc138f7299692ca0c7258fef1d2ed83ffe7f7"
+    "apk_sha256": "c4735cbbef5a15008d584994f91904f40ceed8822271bf67caab672f81af4de0"
   },
   "notes": {
     "en": "• First release of Marivo\n• Control trolling motors, shallow water anchors and chargers over Bluetooth\n• Firmware updates over Bluetooth for shallow water anchors, no account needed\n• Optional account: sign in with a one-time code sent to your email",
