@@ -13,22 +13,22 @@
   "ios": null,
   "releases": [
     {
-      "version": "0.1.2",
-      "build": 3,
-      "date": "2026-11-10",
+      "version": "0.0.1",
+      "build": 1,
+      "date": "2026-11-12",
       "channel": "stable",
       "apk": {
-        "name": "seawalker-0.1.2.apk",
-        "size": 60413359,
-        "sha256": "9ec8f42f9cd8f986a4479250b32fd8ac38aeeeccc70f6921ac4794a21bcc679b"
+        "name": "marivo-0.0.1.apk",
+        "size": 60062932,
+        "sha256": "95a0df36a0f5e12788477a76ec7dc138f7299692ca0c7258fef1d2ed83ffe7f7"
       },
       "notes": {
-        "en": "• More reliable in-app updates: installer files are now verified (signature and version) before installing\n• Fixed an issue where some phones could reuse an old installer file",
-        "zh": "• App 内更新更可靠：安装前会核对安装包的签名和版本\n• 修复部分手机会误用旧安装包导致「签名冲突」的问题",
-        "ru": "• Более надёжное обновление в приложении: перед установкой проверяются подпись и версия\n• Исправлена ошибка, из-за которой некоторые телефоны использовали старый установщик",
-        "ja": "• アプリ内アップデートの信頼性を向上：インストール前に署名とバージョンを確認\n• 一部の端末で古いインストーラーが使われる問題を修正",
-        "pt": "• Atualização no app mais confiável: assinatura e versão são verificadas antes de instalar\n• Corrigido problema em que alguns celulares reutilizavam um instalador antigo",
-        "es": "• Actualización en la app más fiable: se verifican la firma y la versión antes de instalar\n• Corregido un problema por el que algunos teléfonos reutilizaban un instalador antiguo"
+        "en": "• First release of Marivo\n• Control trolling motors, shallow water anchors and chargers over Bluetooth\n• Firmware updates over Bluetooth for shallow water anchors, no account needed\n• Optional account: sign in with a one-time code sent to your email",
+        "zh": "• Marivo 第一个版本\n• 通过蓝牙控制拖钓马达、浅水锚和充电器\n• 浅水锚可通过蓝牙更新固件，不需要账号\n• 账号可选：用发到邮箱的一次性验证码登录",
+        "ru": "• Первая версия Marivo\n• Управление троллинговыми моторами, якорями для мелководья и зарядными устройствами по Bluetooth\n• Обновление прошивки якорей для мелководья по Bluetooth, без аккаунта\n• Аккаунт по желанию: вход по одноразовому коду, который приходит на почту",
+        "ja": "• Marivo の最初のバージョン\n• Bluetooth でエレキモーター、シャローアンカー、充電器を操作\n• シャローアンカーのファームウェアを Bluetooth で更新（アカウント不要）\n• アカウントは任意：メールに届くワンタイムコードでログイン",
+        "pt": "• Primeira versão do Marivo\n• Controle motores elétricos de pesca, âncoras para águas rasas e carregadores por Bluetooth\n• Atualização de firmware por Bluetooth para âncoras para águas rasas, sem precisar de conta\n• Conta opcional: entre com um código de uso único enviado para o seu e-mail",
+        "es": "• Primera versión de Marivo\n• Controla motores eléctricos de pesca, anclas para aguas poco profundas y cargadores por Bluetooth\n• Actualización de firmware por Bluetooth para anclas para aguas poco profundas, sin necesidad de cuenta\n• Cuenta opcional: inicia sesión con un código de un solo uso enviado a tu correo"
       }
     }
   ]
