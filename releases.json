@@ -13,6 +13,25 @@
   "ios": null,
   "releases": [
     {
+      "version": "0.0.2",
+      "build": 2,
+      "date": "2026-11-18",
+      "channel": "stable",
+      "apk": {
+        "name": "marivo-0.0.2.apk",
+        "size": 41688298,
+        "sha256": "19ca06f69c5b3cd1e79a9681a23bddb14eaf0f5b13aee11571685c7ca16cf1be"
+      },
+      "notes": {
+        "zh": "• 拖钓马达：新的控制页面，一屏完成遥控、航向锁定和锚定\n• 马达设置分类整理，新增卫星信息、电源（电池、低电量提示、无操作自动关机）、转向速度、故障码和清除故障\n• 航点航线可以按距离、编号或时间排序\n• 可以在 App 里升级拖钓马达和智能遥控器的固件\n• 固件更新说明：查看各产品的固件、更新内容和注意事项；国内不开 VPN 也能更新\n• 已连接的设备不会被随意断开，只有手动断开或退出 App 时才断开；意外断开后一键重新连接\n• Android：返回键打开菜单，连按两次退出 App",
+        "en": "• Trolling motor: new control page with remote, heading lock and anchoring on one screen\n• Motor settings grouped by topic, with satellites, power (battery, low-battery prompts, auto power-off when idle), steering speed, and fault codes you can clear\n• Sort points and routes by distance, number or time\n• Update trolling motor and smart remote firmware in the app\n• Firmware news: see each product's firmware, what's new and what to watch out for; updates also work in China without a VPN\n• Connected devices stay connected until you disconnect them or exit the app; reconnect with one tap after an unexpected disconnect\n• Android: Back opens the menu; press Back twice to exit the app",
+        "ru": "• Троллинговый мотор: новый экран управления — пульт, удержание курса и якорь на одном экране\n• Настройки мотора разделены по темам: спутники, питание (батарея, предупреждения о разряде, автовыключение при бездействии), скорость поворота, коды неисправностей со сбросом\n• Сортировка точек и маршрутов по расстоянию, номеру или времени\n• Обновление прошивки троллингового мотора и умного пульта в приложении\n• Новое в прошивках: прошивки каждого устройства, что нового и на что обратить внимание; в Китае обновления работают без VPN\n• Подключённые устройства не отключаются, пока вы не отключите их сами или не выйдете из приложения; после неожиданного отключения — повторное подключение одним нажатием\n• Android: «Назад» открывает меню, двойное нажатие — выход из приложения",
+        "ja": "• エレキモーター：新しい操作画面。リモコン操作、ヘディングロック、アンカーを1画面で\n• モーター設定を分類して整理。衛星情報、電源（バッテリー、低電圧のお知らせ、無操作時の自動電源オフ）、操舵速度、故障コードとクリアを追加\n• 地点とルートを距離・番号・時間で並べ替え\n• エレキモーターとスマートリモコンのファームウェアをアプリで更新\n• ファームウェアのお知らせ：製品ごとのファームウェア、更新内容、注意事項を確認。中国国内でも VPN なしで更新可能\n• 接続した機器は、手動で切断するかアプリを終了するまで切断されません。予期しない切断の後はワンタップで再接続\n• Android：戻るボタンでメニューを開き、2回押すとアプリを終了",
+        "pt": "• Motor elétrico de pesca: nova tela de controle, com controle remoto, travamento de rumo e ancoragem em uma única tela\n• Configurações do motor organizadas por tema, com satélites, energia (bateria, avisos de bateria fraca, desligar automaticamente sem uso), velocidade de giro e códigos de falha que podem ser limpos\n• Ordene pontos e rotas por distância, número ou data\n• Atualize o firmware do motor elétrico de pesca e do controle inteligente pelo app\n• Novidades de firmware: veja o firmware de cada produto, as novidades e os cuidados; na China as atualizações funcionam sem VPN\n• Dispositivos conectados continuam conectados até você desconectar ou sair do app; reconexão com um toque após uma desconexão inesperada\n• Android: Voltar abre o menu; pressione Voltar duas vezes para sair do app",
+        "es": "• Motor eléctrico de pesca: nueva pantalla de control, con mando, bloqueo de rumbo y anclaje en una sola pantalla\n• Ajustes del motor organizados por temas, con satélites, energía (batería, avisos de batería baja, apagado automático sin uso), velocidad de giro y códigos de fallo que se pueden borrar\n• Ordene puntos y rutas por distancia, número o fecha\n• Actualice el firmware del motor eléctrico de pesca y del mando inteligente desde la app\n• Novedades de firmware: vea el firmware de cada producto, las novedades y las precauciones; en China las actualizaciones funcionan sin VPN\n• Los dispositivos conectados siguen conectados hasta que los desconecte o salga de la app; reconexión con un toque tras una desconexión inesperada\n• Android: Atrás abre el menú; pulse Atrás dos veces para salir de la app"
+      }
+    },
+    {
       "version": "0.0.1",
       "build": 1,
       "date": "2026-11-12",
